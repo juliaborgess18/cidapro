@@ -1,7 +1,7 @@
 import sqlite3
 from typing import List, Optional
 from domain.entities.usuario import Usuario
-from infrastructure.sql.crud import *
+from infrastructure.sql.crud_usuario import *
 from infrastructure.util.database import obter_conexao
 
 class ClienteRepo:
