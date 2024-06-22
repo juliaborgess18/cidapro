@@ -1,5 +1,5 @@
 SQL_CRIAR_TABELA = """
-    CREATE TABLE pais(
+    CREATE TABLE IF NOT EXISTS pais(
         id    INTEGER PRIMARY KEY AUTOINCREMENT
         ,nome TEXT NOT NULL
     )
@@ -12,5 +12,9 @@ SQL_INSERIR = """
 
 SQL_RESETAR = """
     DROP TABLE pais
+"""
+
+SQL_SE_EXISTE = """
+    SELECT COUNT(*) FROM pais WHERE id=?
 """
 

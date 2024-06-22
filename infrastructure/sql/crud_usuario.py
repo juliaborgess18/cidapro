@@ -45,3 +45,7 @@ SQL_EXCLUIR = """
     WHERE id=?
 """
 
+SQL_SE_EXISTE = """
+    SELECT COUNT(*) FROM usuario WHERE id=?
+"""
+

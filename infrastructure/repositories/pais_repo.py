@@ -42,3 +42,16 @@ class PaisRepo:
             except sqlite3.Error as ex:
                 print(ex)
 
+    @classmethod
+    def se_existe(cls, id: str) -> bool:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_SE_EXISTE, (id,)).fetchone()
+                resultado = tupla[0]
+                if resultado == 0 or resultado == None:
+                    return False
+                return True
+        except sqlite3.Error as ex:
+            print(ex)
+

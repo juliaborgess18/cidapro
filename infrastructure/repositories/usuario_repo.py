@@ -1,10 +1,11 @@
+import json
 import sqlite3
 from typing import List, Optional
 from domain.entities.usuario import Usuario
 from infrastructure.sql.crud_usuario import *
 from infrastructure.util.database import obter_conexao
 
-class ClienteRepo:
+class UsuarioRepo:
     
     @classmethod
     def criar_tabela(cls,):
@@ -17,7 +18,8 @@ class ClienteRepo:
         try:
             with obter_conexao() as conexao:
                 cursor = conexao.cursor()
-                usuarios = cursor.execute(SQL_SELECIONAR_TODOS).fetchall()
+                tuplas = cursor.execute(SQL_SELECIONAR_TODOS).fetchall()
+                usuarios = [Usuario(*tupla) for tupla in tuplas]
             return usuarios
         except sqlite3.Error as ex:
             print(ex)
@@ -28,12 +30,13 @@ class ClienteRepo:
         try:
             with obter_conexao() as conexao:
                 cursor = conexao.cursor()
-                usuario = cursor.execute(
+                tupla = cursor.execute(
                     SQL_SELECIONAR_POR_ID,
                     (
-                        id
+                        id,
                     )
                 ).fetchone()
+                usuario = Usuario(*tupla)
             return usuario
         except sqlite3.Error as ex:
             print(ex)
@@ -69,7 +72,7 @@ class ClienteRepo:
                 cursor.execute(
                     SQL_EXCLUIR,
                     (
-                        id
+                        id,
                     ),
                 )
         except sqlite3.Error as ex:
@@ -93,6 +96,49 @@ class ClienteRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None 
-        
-                
+    
+    @classmethod
+    def inserir_dados(cls,):
+        usuarios = []
+
+        with open("infrastructure/data/usuarios.json", 'r', encoding='utf-8') as f:
+            dados = json.load(f)
             
+        for dado in dados:
+            usuario = Usuario()
+            usuario.nome = dado["nome"]
+            usuario.cpf = dado["cpf"]
+            usuario.data_nascimento = dado["data_nascimento"]
+            usuario.email = dado["email"]
+            usuario.senha = dado["senha"]
+            usuarios.append(usuario)
+        
+        for usuario in usuarios:
+            try:
+                with obter_conexao() as conexao:
+                    cursor = conexao.cursor()
+                    cursor.execute(
+                    SQL_INSERIR,
+                    (
+                        usuario.nome            
+                        ,usuario.cpf             
+                        ,usuario.data_nascimento 
+                        ,usuario.email           
+                        ,usuario.senha           
+                    ),
+                )
+            except sqlite3.Error as ex:
+                print(ex)
+
+    @classmethod
+    def se_existe(cls, id: str) -> bool:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_SE_EXISTE, (id,)).fetchone()
+                resultado = tupla[0]
+                if resultado == 0 or resultado == None:
+                    return False
+                return True
+        except sqlite3.Error as ex:
+            print(ex)
