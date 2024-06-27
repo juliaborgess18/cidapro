@@ -1,4 +1,5 @@
 import logging
+from sqlite3 import DatabaseError
 
 from fastapi import FastAPI, Request, Response, status
 from fastapi.responses import JSONResponse
@@ -18,8 +19,15 @@ def configurar_excecoes(app: FastAPI):
             status_code=status.HTTP_404_NOT_FOUND,
             content={ "Error(s)": ex.message })
     
+    @app.exception_handler(DatabaseError)
+    async def excecao_banco_de_dados(request: Request, ex: NotFoundException):
+        logger.error(ex.message)
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content={ "Error(s)": ex.message })
+    
     @app.exception_handler(Exception)
-    async def excecao_ganerica(request: Request, ex: Exception):
+    async def excecao_generica(request: Request, ex: Exception):
         logger.error(ex)
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

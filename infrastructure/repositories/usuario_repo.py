@@ -110,6 +110,7 @@ class UsuarioRepo:
             usuario.cpf = dado["cpf"]
             usuario.data_nascimento = dado["data_nascimento"]
             usuario.email = dado["email"]
+            # usuario.senha = obter_hash_senha(dado["senha"])
             usuario.senha = dado["senha"]
             usuarios.append(usuario)
         
@@ -142,3 +143,53 @@ class UsuarioRepo:
                 return True
         except sqlite3.Error as ex:
             print(ex)
+
+    @classmethod
+    def selecionar_por_email(cls, email:str) -> Usuario:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(
+                    SQL_SELECIONAR_POR_EMAIL,
+                    (
+                        email,
+                    )
+                ).fetchone()
+                usuario = Usuario(*tupla)
+            return usuario
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+    
+    @classmethod
+    def alterar_token(cls, id: int, token: str) -> bool:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                cursor.execute(SQL_ALTERAR_TOKEN, (token, id))
+                return cursor.rowcount > 0
+        except sqlite3.Error as ex:
+            print(ex)
+            return False
+        
+    @classmethod
+    def selecionar_por_token(cls, token:str) -> Usuario:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(
+                    SQL_SELECIONAR_POR_TOKEN,
+                    (
+                        token,
+                    )
+                ).fetchone()
+                if tupla:
+                    usuario = Usuario(*tupla)
+                    return usuario
+                else:
+                    return None
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+
+        

@@ -5,7 +5,8 @@ SQL_CRIAR_TABELA =  """
         , cpf             TEXT NOT NULL UNIQUE
         , data_nascimento DATE NOT NULL
         , email           TEXT NOT NULL UNIQUE
-        , senha           TEXT NOT NULL        
+        , senha           TEXT NOT NULL
+        , token           TEXT        
     )
 """
 
@@ -47,5 +48,22 @@ SQL_EXCLUIR = """
 
 SQL_SE_EXISTE = """
     SELECT COUNT(*) FROM usuario WHERE id=?
+"""
+
+SQL_SELECIONAR_POR_EMAIL = """
+    SELECT * FROM usuario WHERE email=?
+"""
+
+SQL_ALTERAR_TOKEN = """
+    UPDATE
+        usuario
+    SET
+        token=?
+    WHERE
+        id=?
+"""
+
+SQL_SELECIONAR_POR_TOKEN = """
+    SELECT * FROM usuario WHERE token=?
 """
 

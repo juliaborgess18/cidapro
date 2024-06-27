@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/presentation/static/lib/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/presentation/static/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/presentation/static/lib/bootstrap-icons/font/bootstrap-icons.min.css">
 </head>
 <body>
-    {% include "cabecalho_solicitante.html" %}
-    {% block content %}
+    <header>
+        {% include "cabecalho_solicitante.html" %}
+    </header>
 
-    {% endblock %}
-    <script src="/presentation/static/lib/bootstrap/bootstrap.bundle.min.js"></script>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        {% include "rodape.html" %}
+    </footer>
+
+    <script src="/presentation/static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
