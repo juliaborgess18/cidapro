@@ -1,9 +1,6 @@
 from sqlite3 import DatabaseError
-from fastapi import APIRouter, FastAPI, Query, Request, status
+from fastapi import APIRouter, Query, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-import uvicorn
 
 from application.dto.entrar_usuario_dto import EntrarUsuarioDTO
 from application.utils.cookies import adicionar_cookie_auth
@@ -13,7 +10,6 @@ from presentation.util.templates import obter_jinja_templates
 from application.utils.auth import (
     conferir_senha,
     gerar_token,
-    obter_hash_senha,
 )
 
 router = APIRouter(tags=["Main"])
@@ -46,14 +42,14 @@ async def post_entrar(entrar_dto: EntrarUsuarioDTO):
         raise DatabaseError(
             "Não foi possível alterar o token do cliente no banco de dados."
         )
-    response = JSONResponse(content={"redirect": {"url": "/pagina_inicial_solicitante"}})
+    response = JSONResponse(content={"redirect": {"url": "/usuario/pagina_inicial_solicitante"}})
     adicionar_cookie_auth(response, token)
     return response
 
-@router.get("/pagina_inicial_solicitante", response_class=HTMLResponse)
+@router.get("/usuario/pagina_inicial_solicitante", response_class=HTMLResponse)
 async def get_pagina_inicial_solitante(request: Request):
     return templates.TemplateResponse("pagina_inicial_solicitante.html", {"request": request})
 
-@router.post("/sair", response_class=JSONResponse)
+@router.post("/usuario/sair", response_class=JSONResponse)
 async def post_sair():
     pass
