@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  web:
+    container_name: cidapro.cachoeiro.es
+    build: .
+    ports:
+      - "8062:8000"
