@@ -1,0 +1,40 @@
+from typing import Optional
+from application.dto.entrar_usuario_dto import EntrarUsuarioDTO
+from application.utils.auth import conferir_senha
+from infrastructure.repositories.usuario_repo import UsuarioRepo
+from sqlite3 import DatabaseError
+from fastapi import status
+from fastapi.responses import JSONResponse
+
+from application.dto.entrar_usuario_dto import EntrarUsuarioDTO
+from application.utils.cookies import adicionar_cookie_auth
+from application.utils.pydantic import create_validation_errors
+from infrastructure.repositories.usuario_repo import UsuarioRepo
+from application.utils.auth import (
+    conferir_senha,
+    gerar_token,
+)
+
+
+class EntrarUsuarioUseCase():
+    async def execute(dto: EntrarUsuarioDTO) -> Optional[str]:
+        usuario_entrou = UsuarioRepo.selecionar_por_email(dto.email)
+        if (
+            (not usuario_entrou)
+            or (not usuario_entrou.senha)
+            or (not conferir_senha(dto.senha, usuario_entrou.senha))
+        ):
+            return JSONResponse(
+                content=create_validation_errors(
+                    dto,
+                    ["email", "senha"],
+                    ["Credenciais inválidas.", "Credenciais inválidas."],
+                ),
+                status_code=status.HTTP_404_NOT_FOUND,
+            )
+        token = gerar_token()
+        if not UsuarioRepo.alterar_token(usuario_entrou.id, token):
+            raise DatabaseError(
+                "Não foi possível alterar o token do cliente no banco de dados."
+            )
+        return token

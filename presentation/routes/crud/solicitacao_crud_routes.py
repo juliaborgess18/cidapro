@@ -1,6 +1,5 @@
-import sqlite3
 from typing import List
-from fastapi import APIRouter, Request, Response, status
+from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 
 from application.dto.solicitacao_dto import CriarSolicitacaoDTO

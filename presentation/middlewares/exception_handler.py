@@ -1,11 +1,9 @@
 import logging
-from sqlite3 import DatabaseError
 
-from fastapi import FastAPI, HTTPException, Request, Response, status
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi import FastAPI, HTTPException, Request, status
+from fastapi.responses import RedirectResponse
 
 from application.utils.cookies import adicionar_mensagem_erro
-from domain.errors.NotFoundException import NotFoundException
 from presentation.util.templates import obter_jinja_templates
 
 

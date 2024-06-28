@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi import APIRouter
 from application.dto.alterar_usuario_dto import AlterarUsuarioDTO
 from application.dto.criar_usuario_dto import CriarUsuarioDTO
 from application.mapper.usuario_mapper import UsuarioMapper
@@ -10,20 +9,6 @@ router = APIRouter(tags=["Usuário"])
 
 templates = obter_jinja_templates("presentation/templates/usuario/pages")
 
-@router.get("/usuario/pagina_inicial_solicitante", response_class=HTMLResponse)
-async def get_pagina_inicial_solitante(request: Request):
-    return templates.TemplateResponse("solicitante/pagina_inicial_solicitante.html", {"request": request})
-
-@router.post("/usuario/sair", response_class=JSONResponse)
-async def post_sair():
-    pass
-
-@router.post("/usuario")
-async def post_usuario(usuario: CriarUsuarioDTO):
-    novo_usuario = UsuarioMapper.cadastrar_usuario(usuario)
-    novo_usuario_repo = UsuarioRepo.inserir(novo_usuario)
-    return {"Usuário criado": novo_usuario_repo.nome}
-
 @router.get("/usuario")
 async def get_usuarios():
     usuarios = UsuarioRepo.selecionar_todos()
@@ -33,6 +18,12 @@ async def get_usuarios():
 async def get_usuario(id_usuario:str):
     usuario = UsuarioRepo.selecionar_por_id(id_usuario)
     return {"Usuário": usuario}
+
+@router.post("/usuario")
+async def post_usuario(usuario: CriarUsuarioDTO):
+    novo_usuario = UsuarioMapper.cadastrar_usuario(usuario)
+    novo_usuario_repo = UsuarioRepo.inserir(novo_usuario)
+    return {"Usuário criado": novo_usuario_repo.nome}
 
 @router.put("/usuario")
 async def put_usuario(usuario: AlterarUsuarioDTO):
