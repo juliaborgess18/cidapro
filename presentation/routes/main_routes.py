@@ -16,12 +16,12 @@ from application.utils.auth import (
 
 router = APIRouter(tags=["Main"])
 
-templates = obter_jinja_templates("presentation/templates/main")
+templates = obter_jinja_templates("presentation/templates/main/pages")
 
 @router.get("/", response_class=HTMLResponse)
-async def get_root(request: Request, return_url: str = Query("/")):
+async def get_root(request: Request):
     """ Renderizando template inicial """
-    return templates.TemplateResponse("entrar.html", {"request": request, "return_url": return_url})
+    return templates.TemplateResponse("entrar.html", {"request": request})
 
 @router.post("/entrar", response_class=JSONResponse)
 async def post_entrar(entrar_dto: EntrarUsuarioDTO):
@@ -61,3 +61,7 @@ async def post_usuario(usuario: CriarUsuarioDTO):
 @router.get("/cadastro_confirmado", response_class=HTMLResponse)
 async def get_cadastrar(request: Request):
     return templates.TemplateResponse("cadastro_confirmado.html", {"request": request})
+
+@router.get("/sobre", response_class=HTMLResponse)
+async def get_sobre(request: Request):
+    return templates.TemplateResponse("sobre.html", {"request": request})

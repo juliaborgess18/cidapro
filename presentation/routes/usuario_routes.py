@@ -8,11 +8,11 @@ from presentation.util.templates import obter_jinja_templates
 
 router = APIRouter(tags=["Usuário"])
 
-templates = obter_jinja_templates("presentation/templates/usuario")
+templates = obter_jinja_templates("presentation/templates/usuario/pages")
 
 @router.get("/usuario/pagina_inicial_solicitante", response_class=HTMLResponse)
 async def get_pagina_inicial_solitante(request: Request):
-    return templates.TemplateResponse("pagina_inicial_solicitante.html", {"request": request})
+    return templates.TemplateResponse("solicitante/pagina_inicial_solicitante.html", {"request": request})
 
 @router.post("/usuario/sair", response_class=JSONResponse)
 async def post_sair():
