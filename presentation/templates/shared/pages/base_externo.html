@@ -10,6 +10,10 @@
 </head>
 <body>
     <main>
+        <div class="container mt-3">
+            {% include "includes/message.html" %}
+        </div> 
+
         {% block content %}{% endblock %}
     </main>
     <script src="/presentation/static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -14,7 +14,12 @@
     </header>
 
     <main>
-        {%- set cliente = request.state.cliente -%}
+        {%- set usuario = request.state.usuario -%}
+
+        <div>
+            {% include "includes/message.html" %}
+        </div> 
+
         {% block content %}{% endblock %}
     </main>
 
