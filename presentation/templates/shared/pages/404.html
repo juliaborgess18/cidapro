@@ -2,5 +2,18 @@
 {% block subtitulo %}Página não encontrada{% endblock %}
 
 {% block content %}
-    <h1>Página não encontrada</h1>
+<div class="container">
+    <h1 class="display-5">Página não encontrada</h1>
+    <div class="row row-cols-1">
+        <div class="col text-center">
+            <img class="img-fluid w-50" src="/presentation/static/img/404.png" alt="Página não encontrada">
+        </div>
+        <div class="col">
+            <p class="display-5 lead">
+                Oops. A página que você solicitou não pode ser encontrada.
+            </p>
+            <a class="text-decoration-none" href="/">Voltar</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
