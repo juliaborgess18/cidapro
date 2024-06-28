@@ -67,3 +67,7 @@ SQL_SELECIONAR_POR_TOKEN = """
     SELECT * FROM usuario WHERE token=?
 """
 
+SQL_SELECIONAR_QUANTIDADE = """
+    SELECT COUNT(*) FROM usuario
+"""
+

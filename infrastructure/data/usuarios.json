@@ -4,209 +4,209 @@
         "cpf": "11122233301",
         "data_nascimento": "2001-10-09",
         "email": "julia.borges@example.com",
-        "senha": "admin123"
+        "senha": "@Admin123"
     },
     {
         "nome": "Igor Almeida da Silva",
         "cpf": "11122233302",
         "data_nascimento": "2002-05-28",
         "email": "igor.almeida@example.com",
-        "senha": "admin123"
+        "senha": "@Admin123"
     },
     {
         "nome": "Ana Silva",
         "cpf": "12345678900",
         "data_nascimento": "1990-01-01",
         "email": "ana.silva@example.com",
-        "senha": "senha123"
+        "senha": "&Senha123"
     },
     {
         "nome": "Bruno Lima",
         "cpf": "23456789011",
         "data_nascimento": "1985-02-12",
         "email": "bruno.lima@example.com",
-        "senha": "senha456"
+        "senha": "&Senha456"
     },
     {
         "nome": "Carlos Oliveira",
         "cpf": "34567890122",
         "data_nascimento": "1978-03-23",
         "email": "carlos.oliveira@example.com",
-        "senha": "senha789"
+        "senha": "&Senha789"
     },
     {
         "nome": "Daniela Souza",
         "cpf": "45678901233",
         "data_nascimento": "1995-04-04",
         "email": "daniela.souza@example.com",
-        "senha": "senha321"
+        "senha": "&Senha321"
     },
     {
         "nome": "Eduardo Pereira",
         "cpf": "56789012344",
         "data_nascimento": "1992-05-15",
         "email": "eduardo.pereira@example.com",
-        "senha": "senha654"
+        "senha": "&Senha654"
     },
     {
         "nome": "Fernanda Rodrigues",
         "cpf": "67890123455",
         "data_nascimento": "1980-06-26",
         "email": "fernanda.rodrigues@example.com",
-        "senha": "senha987"
+        "senha": "&Senha987"
     },
     {
         "nome": "Gustavo Almeida",
         "cpf": "78901234566",
         "data_nascimento": "1988-07-07",
         "email": "gustavo.almeida@example.com",
-        "senha": "senha1234"
+        "senha": "&Senha1234"
     },
     {
         "nome": "Helena Martins",
         "cpf": "89012345677",
         "data_nascimento": "1993-08-18",
         "email": "helena.martins@example.com",
-        "senha": "senha5678"
+        "senha": "&Senha5678"
     },
     {
-        "nome": "Igor Costa",
+        "nome": "Roberto Costa",
         "cpf": "90123456788",
         "data_nascimento": "1986-09-09",
-        "email": "igor.costa@example.com",
-        "senha": "senha9101"
+        "email": "roberto.costa@example.com",
+        "senha": "&Senha9101"
     },
     {
         "nome": "Juliana Ferreira",
         "cpf": "01234567899",
         "data_nascimento": "1979-10-20",
         "email": "juliana.ferreira@example.com",
-        "senha": "senha1121"
+        "senha": "&Senha1121"
     },
     {
         "nome": "Lucas Barbosa",
         "cpf": "12345678910",
         "data_nascimento": "1991-11-11",
         "email": "lucas.barbosa@example.com",
-        "senha": "senha3141"
+        "senha": "&Senha3141"
     },
     {
         "nome": "Mariana Almeida",
         "cpf": "23456789021",
         "data_nascimento": "1983-12-22",
         "email": "mariana.almeida@example.com",
-        "senha": "senha5161"
+        "senha": "&Senha5161"
     },
     {
         "nome": "Nicolas Santos",
         "cpf": "34567890132",
         "data_nascimento": "1994-01-13",
         "email": "nicolas.santos@example.com",
-        "senha": "senha7181"
+        "senha": "&Senha7181"
     },
     {
         "nome": "Olivia Castro",
         "cpf": "45678901243",
         "data_nascimento": "1987-02-24",
         "email": "olivia.castro@example.com",
-        "senha": "senha9202"
+        "senha": "&Senha9202"
     },
     {
         "nome": "Pedro Gomes",
         "cpf": "56789012354",
         "data_nascimento": "1996-03-14",
         "email": "pedro.gomes@example.com",
-        "senha": "senha1122"
+        "senha": "&Senha1122"
     },
     {
         "nome": "Quesia Ribeiro",
         "cpf": "67890123465",
         "data_nascimento": "1982-04-25",
         "email": "quesia.ribeiro@example.com",
-        "senha": "senha3142"
+        "senha": "&Senha3142"
     },
     {
         "nome": "Rafael Costa",
         "cpf": "78901234576",
         "data_nascimento": "1990-05-05",
         "email": "rafael.costa@example.com",
-        "senha": "senha5162"
+        "senha": "&Senha5162"
     },
     {
         "nome": "Sofia Alves",
         "cpf": "89012345687",
         "data_nascimento": "1985-06-06",
         "email": "sofia.alves@example.com",
-        "senha": "senha7182"
+        "senha": "&Senha7182"
     },
     {
         "nome": "Tiago Mendes",
         "cpf": "90123456798",
         "data_nascimento": "1993-07-07",
         "email": "tiago.mendes@example.com",
-        "senha": "senha9203"
+        "senha": "&Senha9203"
     },
     {
         "nome": "Ursula Pires",
         "cpf": "01234567809",
         "data_nascimento": "1989-08-08",
         "email": "ursula.pires@example.com",
-        "senha": "senha1123"
+        "senha": "&Senha1123"
     },
     {
         "nome": "Victor Cardoso",
         "cpf": "12345678920",
         "data_nascimento": "1995-09-09",
         "email": "victor.cardoso@example.com",
-        "senha": "senha3143"
+        "senha": "&Senha3143"
     },
     {
         "nome": "Wesley Rocha",
         "cpf": "23456789031",
         "data_nascimento": "1981-10-10",
         "email": "wesley.rocha@example.com",
-        "senha": "senha5163"
+        "senha": "&Senha5163"
     },
     {
         "nome": "Xenia Moreira",
         "cpf": "34567890142",
         "data_nascimento": "1992-11-11",
         "email": "xenia.moreira@example.com",
-        "senha": "senha7183"
+        "senha": "&Senha7183"
     },
     {
         "nome": "Yara Nunes",
         "cpf": "45678901253",
         "data_nascimento": "1984-12-12",
         "email": "yara.nunes@example.com",
-        "senha": "senha9204"
+        "senha": "&Senha9204"
     },
     {
         "nome": "Zeca Teixeira",
         "cpf": "56789012364",
         "data_nascimento": "1997-01-13",
         "email": "zeca.teixeira@example.com",
-        "senha": "senha1124"
+        "senha": "&Senha1124"
     },
     {
         "nome": "Amanda Vieira",
         "cpf": "67890123476",
         "data_nascimento": "1991-02-02",
         "email": "amanda.vieira@example.com",
-        "senha": "senha2020"
+        "senha": "&Senha2020"
     },
     {
         "nome": "Bruno Castro",
         "cpf": "78901234587",
         "data_nascimento": "1984-03-03",
         "email": "bruno.castro@example.com",
-        "senha": "senha3030"
+        "senha": "&Senha3030"
     },
     {
         "nome": "Carla Nascimento",
         "cpf": "89012345698",
         "data_nascimento": "1992-04-04",
         "email": "carla.nascimento@example.com",
-        "senha": "senha4040"
+        "senha": "&Senha4040"
     }
 ]

@@ -2,7 +2,9 @@ from sqlite3 import DatabaseError
 from fastapi import APIRouter, Query, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
 
+from application.dto.criar_usuario_dto import CriarUsuarioDTO
 from application.dto.entrar_usuario_dto import EntrarUsuarioDTO
+from application.mapper.usuario_mapper import UsuarioMapper
 from application.utils.cookies import adicionar_cookie_auth
 from application.utils.pydantic import create_validation_errors
 from infrastructure.repositories.usuario_repo import UsuarioRepo
@@ -46,10 +48,16 @@ async def post_entrar(entrar_dto: EntrarUsuarioDTO):
     adicionar_cookie_auth(response, token)
     return response
 
-@router.get("/usuario/pagina_inicial_solicitante", response_class=HTMLResponse)
-async def get_pagina_inicial_solitante(request: Request):
-    return templates.TemplateResponse("pagina_inicial_solicitante.html", {"request": request})
+@router.get("/cadastrar", response_class=HTMLResponse)
+async def get_cadastrar(request: Request):
+    return templates.TemplateResponse("cadastrar.html", {"request": request})
 
-@router.post("/usuario/sair", response_class=JSONResponse)
-async def post_sair():
-    pass
+@router.post("/cadastrar", response_class=JSONResponse)
+async def post_usuario(usuario: CriarUsuarioDTO):
+    novo_usuario = UsuarioMapper.cadastrar_usuario(usuario)
+    _ = UsuarioRepo.inserir(novo_usuario)
+    return JSONResponse(content={"redirect": {"url": "/cadastro_confirmado"}})
+
+@router.get("/cadastro_confirmado", response_class=HTMLResponse)
+async def get_cadastrar(request: Request):
+    return templates.TemplateResponse("cadastro_confirmado.html", {"request": request})

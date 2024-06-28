@@ -18,3 +18,7 @@ SQL_SE_EXISTE = """
     SELECT COUNT(*) FROM pais WHERE id=?
 """
 
+SQL_SELECIONAR_QUANTIDADE = """
+    SELECT COUNT(*) FROM pais
+"""
+

@@ -1,0 +1,57 @@
+{% extends "base_externo.html" %}
+{% block subtitulo %}Entrar{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="display-5"><b>Cadastrar</b></h1>
+        <hr>
+        <form class="json-form" action="/cadastrar" method="post">
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" id="inputNomeUsuario" name="nome" placeholder=" "></input>
+                <label class="form-label" for="inputNomeUsuario">Nome</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" id="inputCpfUsuario" name="cpf" placeholder=" " data-mask="cpf"></input>
+                <label class="form-label" for="inputCpfUsuario">CPF</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="date" id="inputDataNascimentoUsuario" name="data_nascimento"
+                    placeholder=" "></input>
+                <label class="form-label" for="inputDataNascimentoUsuario">Data de Nascimento</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="email" id="inputEmailUsuario" name="email" placeholder=" "></input>
+                <label class="form-label" for="inputEmailUsuario">Email</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="password" id="inputSenhaUsuario" name="senha" placeholder=" "></input>
+                <label class="form-label" for="inputSenhaUsuario">Senha</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="password" id="inputConfimrarSenhaUsuario" name="confirmacao_senha"
+                    placeholder=" "></input>
+                <label class="form-label" for="inputConfimrarSenhaUsuario">Confirmar senha</label>
+            </div>
+
+            <div class="mb-3 d-flex">
+                <button class="btn btn-dark btn-lg" type="submit">Cadastrar</button>
+            </div>
+
+            <div class="mb-3">
+                <p class="lead my-0">
+                    <a href="/" class="text-decoration-none text-primary">Já tenho um cadastro</a>
+                </p>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script src="/presentation/static/js/inputMasks.js"></script>
+<script src="/presentation/static/js/formToJson.js"></script>
+{% endblock %}

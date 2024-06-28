@@ -18,36 +18,6 @@ class SolicitacaoRepo:
         except sqlite3.Error as ex:
             print(ex)
     
-    @classmethod
-    def inserir_dados(cls) -> None:
-        solicitacoes = []
-
-        with open("infrastructure/data/solicitacoes.json", "r", encoding='utf-8') as f:
-            dados = json.load(f)
-
-        for dado in dados:
-            solicitacao = Solicitacao()
-            solicitacao.dh_solicitacao = dado['dh_solicitacao']
-            solicitacao.status = dado['status']
-            solicitacao.id_usuario = dado['id_usuario']
-            solicitacao.id_pais = dado['id_pais']
-            solicitacoes.append(solicitacao)
-        
-        for solicitacao in solicitacoes:
-            try:
-                with obter_conexao() as conexao:
-                    cursor = conexao.cursor()
-                    cursor.execute(
-                        SQL_INSERIR,
-                        (
-                            solicitacao.dh_solicitacao
-                            ,solicitacao.status
-                            ,solicitacao.id_usuario
-                            ,solicitacao.id_pais
-                        ) 
-                    ) 
-            except sqlite3.Error as ex:
-                print(ex)
 
     @classmethod
     def selecionar_todos(cls) -> List[Solicitacao]:
@@ -140,3 +110,45 @@ class SolicitacaoRepo:
                 return True
         except sqlite3.Error as ex:
             print(ex)
+
+    @classmethod
+    def selecionar_quantidade(cls) -> int:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_SELECIONAR_QUANTIDADE).fetchone()
+                return int(tupla[0])
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+        
+    @classmethod
+    def inserir_dados(cls) -> None:
+        if cls.selecionar_quantidade() == 0:
+            solicitacoes = []
+            with open("infrastructure/data/solicitacoes.json", "r", encoding='utf-8') as f:
+                dados = json.load(f)
+
+            for dado in dados:
+                solicitacao = Solicitacao()
+                solicitacao.dh_solicitacao = dado['dh_solicitacao']
+                solicitacao.status = dado['status']
+                solicitacao.id_usuario = dado['id_usuario']
+                solicitacao.id_pais = dado['id_pais']
+                solicitacoes.append(solicitacao)
+            
+            for solicitacao in solicitacoes:
+                try:
+                    with obter_conexao() as conexao:
+                        cursor = conexao.cursor()
+                        cursor.execute(
+                            SQL_INSERIR,
+                            (
+                                solicitacao.dh_solicitacao
+                                ,solicitacao.status
+                                ,solicitacao.id_usuario
+                                ,solicitacao.id_pais
+                            ) 
+                        ) 
+                except sqlite3.Error as ex:
+                    print(ex)

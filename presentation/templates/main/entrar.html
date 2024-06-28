@@ -1,50 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "base_externo.html" %}
+{% block subtitulo %}Entrar{% endblock %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/presentation/static/lib/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/presentation/static/lib/bootstrap-icons/font/bootstrap-icons.min.css">
-</head>
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 border border-dark-subtle rounded mt-5 p-4">
+            <h1 class="display-5"><b>Entrar</b></h1>
+            <hr>
+            <form class="json-form" action="/entrar" method="post">
 
-<body>
-    <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-6 offset-3 border border-dark-subtle rounded mt-5 p-4">
-                    <h1 class="display-5"><b>Entrar</b></h1>
-                    <form class="json-form" action="/entrar" method="post">
-
-                        <div class="form-floating mb-3">
-                            <input class="form-control" type="email" id="inputEmailUsuario" name="email"
-                                placeholder=" "></input>
-                            <label class="form-label" for="inputEmailUsuario">Email</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input class="form-control" type="password" id="inputSenhaUsuario" name="senha"
-                                placeholder=" "></input>
-                            <label class="form-label" for="inputSenhaUsuario">Senha</label>
-                        </div>
-                        
-                        <div class="mb-3 d-flex justify-content-center">
-                            <button class="btn btn-dark btn-lg w-50" type="submit">Entrar</button>
-                        </div>
-
-                        <div class="mb-3 text-center">
-                            <p class="lead my-0">
-                                <a href=" " class="text-decoration-none text-primary">Quero me cadastrar</a>
-                            </p>
-                        </div>
-                    </form>
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="email" id="inputEmailUsuario" name="email"
+                        placeholder=" "></input>
+                    <label class="form-label" for="inputEmailUsuario">Email</label>
                 </div>
-            </div>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="password" id="inputSenhaUsuario" name="senha"
+                        placeholder=" "></input>
+                    <label class="form-label" for="inputSenhaUsuario">Senha</label>
+                </div>
+                
+                <div class="mb-3 d-flex justify-content-center">
+                    <button class="btn btn-dark btn-lg w-50" type="submit">Entrar</button>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <p class="lead my-0">
+                        <a href="/cadastrar" class="text-decoration-none text-primary">Quero me cadastrar</a>
+                    </p>
+                </div>
+            </form>
         </div>
-    </main>
+    </div>
+</div>
 
-    <script src="/presentation/static/js/formToJson.js"></script>
-    <script src="/presentation/static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
+<script src="/presentation/static/js/formToJson.js"></script>
 
-</html>
+{% endblock %}

@@ -1,6 +1,8 @@
 import json
 import sqlite3
 from typing import List, Optional
+
+import bcrypt
 from domain.entities.usuario import Usuario
 from infrastructure.sql.crud_usuario import *
 from infrastructure.util.database import obter_conexao
@@ -96,40 +98,6 @@ class UsuarioRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None 
-    
-    @classmethod
-    def inserir_dados(cls,):
-        usuarios = []
-
-        with open("infrastructure/data/usuarios.json", 'r', encoding='utf-8') as f:
-            dados = json.load(f)
-            
-        for dado in dados:
-            usuario = Usuario()
-            usuario.nome = dado["nome"]
-            usuario.cpf = dado["cpf"]
-            usuario.data_nascimento = dado["data_nascimento"]
-            usuario.email = dado["email"]
-            # usuario.senha = obter_hash_senha(dado["senha"])
-            usuario.senha = dado["senha"]
-            usuarios.append(usuario)
-        
-        for usuario in usuarios:
-            try:
-                with obter_conexao() as conexao:
-                    cursor = conexao.cursor()
-                    cursor.execute(
-                    SQL_INSERIR,
-                    (
-                        usuario.nome            
-                        ,usuario.cpf             
-                        ,usuario.data_nascimento 
-                        ,usuario.email           
-                        ,usuario.senha           
-                    ),
-                )
-            except sqlite3.Error as ex:
-                print(ex)
 
     @classmethod
     def se_existe(cls, id: str) -> bool:
@@ -191,5 +159,51 @@ class UsuarioRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None
+        
+    @classmethod
+    def selecionar_quantidade(cls) -> int:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_SELECIONAR_QUANTIDADE).fetchone()
+                return int(tupla[0])
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+        
+    @classmethod
+    def inserir_dados(cls):
+        if cls.selecionar_quantidade() == 0:
+            usuarios = []
+
+            with open("infrastructure/data/usuarios.json", 'r', encoding='utf-8') as f:
+                dados = json.load(f)
+                
+            for dado in dados:
+                usuario = Usuario()
+                
+                usuario.nome = dado["nome"]
+                usuario.cpf = dado["cpf"]
+                usuario.data_nascimento = dado["data_nascimento"]
+                usuario.email = dado["email"]
+                usuario.senha = bcrypt.hashpw(dado["senha"].encode(), bcrypt.gensalt()).decode()
+                usuarios.append(usuario)
+            
+            for usuario in usuarios:
+                try:
+                    with obter_conexao() as conexao:
+                        cursor = conexao.cursor()
+                        cursor.execute(
+                        SQL_INSERIR,
+                        (
+                            usuario.nome            
+                            ,usuario.cpf             
+                            ,usuario.data_nascimento 
+                            ,usuario.email           
+                            ,usuario.senha           
+                        ),
+                    )
+                except sqlite3.Error as ex:
+                    print(ex)
 
         

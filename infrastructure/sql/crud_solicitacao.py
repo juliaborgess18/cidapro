@@ -47,3 +47,7 @@ SQL_EXCLUIR = """
 SQL_SE_EXISTE = """
     SELECT COUNT(*) FROM solicitacao WHERE id=?
 """
+
+SQL_SELECIONAR_QUANTIDADE = """
+    SELECT COUNT(*) FROM solicitacao
+"""
