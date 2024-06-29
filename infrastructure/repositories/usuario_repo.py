@@ -56,7 +56,8 @@ class UsuarioRepo:
                         ,usuario.cpf             
                         ,usuario.data_nascimento 
                         ,usuario.email           
-                        ,usuario.senha           
+                        ,usuario.senha
+                        ,usuario.funcao        
                     ),
                 )
             if cursor.rowcount > 0:
@@ -187,6 +188,7 @@ class UsuarioRepo:
                 usuario.data_nascimento = dado["data_nascimento"]
                 usuario.email = dado["email"]
                 usuario.senha = bcrypt.hashpw(dado["senha"].encode(), bcrypt.gensalt()).decode()
+                usuario.funcao = dado["funcao"]
                 usuarios.append(usuario)
             
             for usuario in usuarios:
@@ -200,7 +202,8 @@ class UsuarioRepo:
                             ,usuario.cpf             
                             ,usuario.data_nascimento 
                             ,usuario.email           
-                            ,usuario.senha           
+                            ,usuario.senha
+                            ,usuario.funcao           
                         ),
                     )
                 except sqlite3.Error as ex:

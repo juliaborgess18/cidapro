@@ -1,0 +1,2 @@
+SOLICITANTE      = 1
+EXAMINADOR       = 2

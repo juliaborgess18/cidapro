@@ -2,6 +2,7 @@ from application.dto.alterar_usuario_dto import AlterarUsuarioDTO
 from application.dto.criar_usuario_dto import CriarUsuarioDTO
 from application.utils.auth import obter_hash_senha
 from domain.entities.usuario import Usuario 
+from domain.models.funcao_usuario import *
 
 class UsuarioMapper:
     
@@ -14,6 +15,7 @@ class UsuarioMapper:
         novo_usuario_db.data_nascimento = usuario.data_nascimento
         novo_usuario_db.email           = usuario.email          
         novo_usuario_db.senha           = obter_hash_senha(usuario.senha)
+        novo_usuario_db.funcao          = SOLICITANTE
         
         return novo_usuario_db   
     

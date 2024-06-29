@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.responses import RedirectResponse
 
 from application.utils.cookies import adicionar_mensagem_erro
+from domain.models.funcao_usuario import EXAMINADOR, SOLICITANTE
 from presentation.util.templates import obter_jinja_templates
 
 
@@ -25,10 +26,15 @@ def configurar_excecoes(app: FastAPI):
         return response
 
     @app.exception_handler(403)
-    async def forbidden_exception_handler(request: Request, _):        
-        response = RedirectResponse(
-            f"/", status_code=status.HTTP_302_FOUND
-        )
+    async def forbidden_exception_handler(request: Request, _):  
+        if request.state.usuario.funcao == str(EXAMINADOR):
+            response = RedirectResponse(
+                f"/usuario/examinador/pagina_inicial", status_code=status.HTTP_302_FOUND
+            )
+        elif request.state.usuario.funcao == str(SOLICITANTE):
+            response = RedirectResponse(
+                f"/usuario/solicitante/pagina_inicial", status_code=status.HTTP_302_FOUND
+            )
         adicionar_mensagem_erro(
             response,
             f"Você está logado como <b>{request.state.usuario.nome}</b> e seu perfil de usuário não tem autorização de acesso à página <b>{request.url.path}</b>. Entre com um usuário do perfil adequado para poder acessar a página em questão.",
