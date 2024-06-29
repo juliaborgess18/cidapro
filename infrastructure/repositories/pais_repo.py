@@ -1,5 +1,7 @@
 import sqlite3
 import json
+from typing import List, Tuple
+from domain.entities.pais import Pais
 from infrastructure.sql.crud_pais import *
 from infrastructure.util.database import obter_conexao
 
@@ -66,3 +68,17 @@ class PaisRepo:
                         cursor.execute(SQL_INSERIR, (pais))
                 except sqlite3.Error as ex:
                     print(ex)
+                    
+    @classmethod
+    def obter_paises(cls) -> List[Pais]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                cursor.execute(SQL_SELECIONAR_PAISES)
+                resultados = cursor.fetchall()
+                paises = [(codigo, nome) for codigo, nome in resultados]
+                return paises
+        except sqlite3.Error as ex:
+            print(ex)
+            return []
+        

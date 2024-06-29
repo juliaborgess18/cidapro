@@ -22,3 +22,7 @@ SQL_SELECIONAR_QUANTIDADE = """
     SELECT COUNT(*) FROM pais
 """
 
+SQL_SELECIONAR_PAISES = """
+    SELECT * FROM pais
+"""
+

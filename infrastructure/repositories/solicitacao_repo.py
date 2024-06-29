@@ -32,7 +32,7 @@ class SolicitacaoRepo:
             return None
 
     @classmethod
-    def selecionar_por_id(cls, id: str) -> Solicitacao:
+    def selecionar_por_id(cls, id: str) -> Optional[Solicitacao]:
         try:
             with obter_conexao() as conexao:
                 cursor = conexao.cursor()
@@ -42,8 +42,11 @@ class SolicitacaoRepo:
                         id,
                     )
                 ).fetchone()
-                solicitacao = Solicitacao(*tupla)
-            return solicitacao
+                if tupla is not None:
+                    solicitacao = Solicitacao(*tupla)
+                    return solicitacao
+                else:
+                    return None
         except sqlite3.Error as ex:
             print(ex)
             return None

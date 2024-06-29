@@ -4,6 +4,28 @@
 <div class="container mt-3">
     <h1 class="display-5"><b>Nova Solicitação</b></h1>
     <hr>
+    <form action="#" class="row json-form" method="post">
+        <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="pais" name="pais">
+                    <option value="" selected disabled>Selecione um país</option>
+                    {% for codigo, nome in paises %}
+                    <option value="{{ pais }}">{{ nome }}</option>
+                    {% endfor %}
+                    <input type="hidden" name="pais_selecionado" value="{{ codigo }}">
+                </select>
+                <label for="pais">País</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="cpf" name="cpf" data-mask="cpf" placeholder=" ">
+                <label for="cpf">Motivo</label>
+            </div>
+
+            <div class="mb-3 d-flex">
+                <button class="btn btn-dark btn-lg w-50" type="submit">Solicitar</button>
+            </div>
+        </div>
+    </form>
 </div>
 
 {% endblock %}

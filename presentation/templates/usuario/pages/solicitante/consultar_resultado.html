@@ -4,6 +4,19 @@
 <div class="container mt-3">
     <h1 class="display-5"><b>Consultar Solicitação</b></h1>
     <hr>
+    <form class="row json-form" id="consultaForm" onsubmit="consultar(event)">
+        <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="idSolicitacao" name="idSolicitacao" placeholder=" ">
+                <label for="idSolicitacao">Código de solicitação</label>
+            </div>
+            <div class="mb-3 d-flex">
+                <button class="btn btn-dark btn-lg w-50" type="submit" id="btnConsultar">Consultar</button>
+            </div>
+        </div>
+    </form>
+    <label>Resultado: </label>
+    <div id="resultadoConsulta"></div>
 </div>
-
+<script src="/presentation/static/js/solicitacao/consultarResultado.js"></script>
 {% endblock %}
