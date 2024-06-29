@@ -22,7 +22,18 @@ SQL_SELECIONAR_POR_ID = """
         * 
     FROM 
       solicitacao
-    WHERE id=?
+    WHERE 
+        id = ?
+"""
+
+SQL_SELECIONAR_POR_ID_E_USUARIO_LOGADO = """
+    SELECT 
+        * 
+    FROM 
+      solicitacao
+    WHERE 1 = 1
+        AND id             = ?
+        AND id_usuario     = ?
 """
 
 SQL_INSERIR = """

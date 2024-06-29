@@ -21,8 +21,8 @@ async def get_pagina_inicial_solicitante(request: Request):
     return templates.TemplateResponse("solicitante/nova_solicitacao.html", {"request": request, "paises":paises})
 
 @router.get("/usuario/solicitante/consultar_solicitacao", response_class=HTMLResponse)
-async def get_pagina_inicial_solicitante(request: Request, id:str=""):
-    solicitacao = ConsultarResultadoSolicitanteUseCase.execute(id)
+async def get_pagina_inicial_solicitante(request: Request, id_solicitacao: str="", id_usuario: str = ""):
+    solicitacao = ConsultarResultadoSolicitanteUseCase.execute(id_solicitacao, id_usuario)
     return templates.TemplateResponse("solicitante/consultar_resultado.html", {"request": request, "solicitacao": solicitacao})
 
 @router.get("/usuario/solicitante/histórico_solicitacao", response_class=HTMLResponse)

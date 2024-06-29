@@ -50,6 +50,27 @@ class SolicitacaoRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None
+    
+    @classmethod
+    def selecionar_por_id_e_usuario_logado(cls, id_solicitacao: str, id_usuario: str) -> Optional[Solicitacao]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(
+                    SQL_SELECIONAR_POR_ID_E_USUARIO_LOGADO,
+                    (
+                         id_solicitacao
+                        ,id_usuario
+                    )
+                ).fetchone()
+                if tupla is not None:
+                    solicitacao = Solicitacao(*tupla)
+                    return solicitacao
+                else:
+                    return None
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
 
     @classmethod
     def inserir(cls, solicitacao: Solicitacao) -> Optional[Solicitacao]:

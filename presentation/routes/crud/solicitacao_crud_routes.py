@@ -22,6 +22,11 @@ async def get_solicitacao(id_solicitacao: str):
     solicitacao = SolicitacaoRepo.selecionar_por_id(id_solicitacao)
     return {"Solicitação": solicitacao }
 
+@router.get("/solicitacao/{id_solicitacao}/{id_usuario}")
+async def get_solicitacao(id_solicitacao: str, id_usuario: str):
+    solicitacao = SolicitacaoRepo.selecionar_por_id_e_usuario_logado(id_solicitacao, id_usuario)
+    return {"Solicitação": solicitacao }
+
 @router.post("/solicitacao")
 async def post_solicitacao(solicitacao: CriarSolicitacaoDTO):
 
