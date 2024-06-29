@@ -9,14 +9,18 @@
     <title>CidaPro :: {% block subtitulo %}{% endblock %}</title>
 </head>
 <body>
+    {%- set usuario = request.state.usuario -%}
     <header>
-        {% include "includes/cabecalho_solicitante.html" %}
+        {% if usuario.funcao == '2' %}
+            {% include "includes/cabecalho_examinador.html" %}
+        {% else %}
+            {% include "includes/cabecalho_solicitante.html" %}
+        {% endif %}
     </header>
 
     <main>
-        {%- set usuario = request.state.usuario -%}
-
-        <div>
+        
+        <div class="container mt-3">
             {% include "includes/message.html" %}
         </div> 
 

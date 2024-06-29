@@ -5,6 +5,7 @@ from fastapi import HTTPException, Request, status
 
 from application.utils.cookies import NOME_COOKIE_AUTH, adicionar_cookie_auth
 from domain.entities.usuario import Usuario
+from domain.models.funcao_usuario import *
 from infrastructure.repositories.usuario_repo import UsuarioRepo
 
 
@@ -34,14 +35,14 @@ async def middleware_autenticacao(request: Request, call_next):
 
 async def checar_permissao(request: Request):
     usuario = request.state.usuario if hasattr(request.state, "usuario") else None
-    area_do_usuario = request.url.path.startswith("/usuario")
-    area_do_admin = request.url.path.startswith("/admin")
-    if (area_do_usuario or area_do_admin) and not usuario:
+    area_do_solicitante = request.url.path.startswith("/usuario/solicitante")
+    area_do_examinador = request.url.path.startswith("/usuario/examinador")
+    if (area_do_solicitante or area_do_examinador) and not usuario:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
-    # if area_do_cliente and cliente.perfil != 1:
-    #     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-    # if area_do_admin and cliente.perfil != 2:
-    #     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
+    if area_do_solicitante and usuario.funcao != str(SOLICITANTE):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
+    if area_do_examinador and usuario.funcao != str(EXAMINADOR):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
 
 
 def obter_hash_senha(senha: str) -> str:

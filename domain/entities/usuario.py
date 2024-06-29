@@ -9,4 +9,5 @@ class Usuario:
     data_nascimento : Optional[str] = None
     email           : Optional[str] = None
     senha           : Optional[str] = None
+    funcao          : Optional[str] = None
     token           : Optional[str] = None

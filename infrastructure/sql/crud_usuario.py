@@ -6,7 +6,8 @@ SQL_CRIAR_TABELA =  """
         , data_nascimento DATE NOT NULL
         , email           TEXT NOT NULL UNIQUE
         , senha           TEXT NOT NULL
-        , token           TEXT        
+        , funcao          TEXT NOT NULL
+        , token           TEXT   
     )
 """
 
@@ -37,8 +38,8 @@ SQL_ALTERAR = """
 """
 
 SQL_INSERIR = """
-    INSERT INTO usuario (nome, cpf, data_nascimento, email, senha)
-    VALUES (?,?,?,?,?)
+    INSERT INTO usuario (nome, cpf, data_nascimento, email, senha, funcao)
+    VALUES (?,?,?,?,?,?)
 """
 
 SQL_EXCLUIR = """
