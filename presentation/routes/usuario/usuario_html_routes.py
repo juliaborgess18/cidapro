@@ -1,19 +1,11 @@
-import datetime
-from typing import List
-from fastapi import APIRouter, Request, Response, status
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
-from application.mapper.solicitacao_mapper import SolicitacaoMapper
-from application.mapper.usuario_mapper import UsuarioMapper
 from application.use_cases.usuario.analisar_solicitacao_use_case import AnalisarSolicitanteUseCase
 from application.use_cases.usuario.consultar_resultado_solicitante_use_case import ConsultarResultadoSolicitanteUseCase
-from application.use_cases.usuario.visualizar_historico_solicitante import VisualizarHistoricoSolicitacoesUseCase
 from application.use_cases.usuario.visualizar_solicitante_use_case import VisualizarSolicitanteUseCase
-from application.utils.cookies import adicionar_mensagem_sucesso
 from infrastructure.repositories.motivo_repo import MotivoRepo
-from domain.errors.NotFoundException import NotFoundException
 from infrastructure.repositories.pais_repo import PaisRepo
 from infrastructure.repositories.solicitacao_repo import SolicitacaoRepo
-from infrastructure.repositories.usuario_repo import UsuarioRepo
 from presentation.util.templates import obter_jinja_templates
 
 router = APIRouter(tags=["Usuário"])

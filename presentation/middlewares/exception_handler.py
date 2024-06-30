@@ -5,7 +5,7 @@ from fastapi.responses import RedirectResponse
 
 from application.utils.cookies import adicionar_mensagem_erro
 from domain.errors.NotFoundException import NotFoundException
-from domain.models.funcao_usuario import EXAMINADOR, SOLICITANTE
+from domain.models.funcao_usuario import *
 from presentation.util.templates import obter_jinja_templates
 
 

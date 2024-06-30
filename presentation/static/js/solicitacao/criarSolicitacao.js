@@ -1,4 +1,3 @@
-// Função para enviar a solicitação
 async function criarSolicitacao(event) {
     event.preventDefault(); 
 
@@ -7,14 +6,13 @@ async function criarSolicitacao(event) {
     const idMotivo = document.getElementById('idMotivo').value.trim();
 
     const requestData = {
-        status: "Pendente", 
+        status: "PENDENTE", 
         id_usuario: idUsuario,  
         id_pais: idPais,
         id_motivo: idMotivo
     };
     console.log(requestData);
 
-    // Configuração da requisição fetch
     try {
         const response = await fetch('/solicitacao', {
             method: 'POST', 

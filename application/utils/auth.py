@@ -9,7 +9,6 @@ from domain.models.funcao_usuario import *
 from infrastructure.repositories.usuario_repo import UsuarioRepo
 
 
-
 async def obter_usuario_logado(request: Request) -> Optional[Usuario]:
     try:
         token = request.cookies[NOME_COOKIE_AUTH]

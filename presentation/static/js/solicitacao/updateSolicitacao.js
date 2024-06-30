@@ -1,6 +1,6 @@
 function ClickBtnAceitar(id) {
 
-    url = '/usuario/aceitar_solicitacao?id_solicitacao=5'
+    url = '/usuario/aceitar_solicitacao?id_solicitacao=' + id
     var response = fetch(url, {
         method: 'PATCH',
         headers: {
@@ -17,7 +17,7 @@ function ClickBtnAceitar(id) {
 
 function ClickBtnNegar(id) {
 
-    url = '/usuario/negar_solicitacao?id_solicitacao=5'
+    url = '/usuario/negar_solicitacao?id_solicitacao=' + id
     var response = fetch(url, {
         method: 'PATCH',
         headers: {
@@ -34,7 +34,7 @@ function ClickBtnNegar(id) {
 
 function ClickBtnCancelar(id) {
 
-    url = '/usuario/cancelar_solicitacao?id_solicitacao=5'
+    url = '/usuario/cancelar_solicitacao?id_solicitacao=' + id
     var response = fetch(url, {
         method: 'PATCH',
         headers: {

@@ -1,6 +1,6 @@
 import re
 from datetime import date
-from typing import Any, Optional
+from typing import Any
 
 
 def is_in_range(

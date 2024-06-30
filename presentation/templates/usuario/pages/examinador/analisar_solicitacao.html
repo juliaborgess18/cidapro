@@ -2,7 +2,6 @@
 {% block subtitulo %}Analisar Solicitação{% endblock %}
 {% block content %}
 
-
 <div class="container mt-3">
     <h1 class="display-5"><b>Analisar Solicitação</b></h1>
     <hr>
@@ -52,7 +51,7 @@
     <h2 class="display-6 mt-3">Dados da Solicitação</h2>
     <div class="row row-cols-5 mt-3">
         <div class="col">
-            <p class="lead fw-bold">Id</p>
+            <p class="lead fw-bold">Id da Solicitação</p>
             <p>{{ solicitacao.id if solicitacao != None else '' }}</p>
         </div>
 
