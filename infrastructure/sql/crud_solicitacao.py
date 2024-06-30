@@ -23,7 +23,7 @@ SQL_SELECIONAR_POR_ID = """
     FROM 
       solicitacao
     WHERE 
-        id = ?
+        id_usuario = ?
 """
 
 SQL_SELECIONAR_POR_ID_E_USUARIO_LOGADO = """
@@ -61,4 +61,12 @@ SQL_SE_EXISTE = """
 
 SQL_SELECIONAR_QUANTIDADE = """
     SELECT COUNT(*) FROM solicitacao
+"""
+
+SQL_SELECIONAR_POR_ID_E_USUARIO_LOGADO = """
+    SELECT 
+        * 
+    FROM 
+      solicitacao
+    WHERE id_usuario = ?
 """

@@ -38,8 +38,10 @@ class UsuarioRepo:
                         id,
                     )
                 ).fetchone()
-                usuario = Usuario(*tupla)
-            return usuario
+                if tupla is not None:
+                    usuario = Usuario(*tupla)
+                    return usuario
+                return None
         except sqlite3.Error as ex:
             print(ex)
             return None

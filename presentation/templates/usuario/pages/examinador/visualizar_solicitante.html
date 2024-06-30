@@ -1,9 +1,84 @@
 {% extends "pages/base_interno.html" %}
-{% block subtitulo %}Visualizar Solicitação{% endblock %}
+{% block subtitulo %}Visualizar Solicitante{% endblock %}
 {% block content %}
 <div class="container mt-3">
-    <h1 class="display-5"><b>Visualizar Solicitação</b></h1>
+    <h1 class="display-5"><b>Visualizar Solicitante</b></h1>
     <hr>
+    <form action="/usuario/examinador/visualizar_solicitante" method="get" role="search">
+        <div class="d-inline-flex align-items-baseline">
+            <div class="form-floating mb-3 me-3">
+                <input class="form-control" type="number" id="inputIdSolicitante" name="id_solicitante" placeholder=" ">
+                <label class="form-label" for="inputIdSolicitante">Id do Solicitante</label>
+            </div>
+    
+            <div class="mb-3 ms-3">
+                <button class="btn btn-dark btn-lg" type="submit">Buscar</button>
+            </div>
+
+        </div>
+    </form>
+    <hr>
+    <h2 class="display-6 mt-3">Dados Pessoais</h2>
+    <div class="row row-cols-5 mt-3">
+        <div class="col">
+            <p class="lead fw-bold">Id do solicitante</p>
+            <p>{{ solicitante.id if solicitante != None else '' }}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Nome do Solicitante</p>
+            <p>{{ solicitante.nome if solicitante != None else ''}}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">CPF</p>
+            <p>{{ solicitante.cpf if solicitante != None else ''}}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Data de Nascimento</p>
+            <p>{{ solicitante.data_nascimento if solicitante != None else ''}}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Email</p>
+            <p>{{ solicitante.email if solicitante != None else ''}}</p>
+        </div>
+
+    </div>
+
+    <h2 class="display-6 mt-3">Solicitações</h2>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Data e Hora</th>
+                        <th scope="col">Pais</th>
+                        <th scope="col">Motivo</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+
+                {% if solicitacoes != None %}
+                <tbody class="table-group-divider">
+                    {% for solicitacao in solicitacoes %}
+                    <tr>
+                        <th scope="row">{{ solicitacao.id }}</th>
+                        <td scope="col">{{ solicitacao.dh_solicitacao }}</td>
+                        <td scope="col">{{ solicitacao.status }}</td>
+                        <td scope="col"> - </td>
+                        <td scope="col">{{ solicitacao.pais }}</td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+                {% endif%}
+            </table>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}

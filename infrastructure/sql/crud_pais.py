@@ -26,3 +26,7 @@ SQL_SELECIONAR_PAISES = """
     SELECT * FROM pais
 """
 
+SQL_SELECIONAR_POR_ID = """
+    SELECT * FROM pais where id = ?
+"""
+

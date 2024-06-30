@@ -176,3 +176,17 @@ class SolicitacaoRepo:
                         ) 
                 except sqlite3.Error as ex:
                     print(ex)
+
+    @classmethod
+    def selecionar_por_id_usuario(cls, id_usuario: str) -> Optional[List[Solicitacao]]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tuplas = cursor.execute(SQL_SELECIONAR_POR_ID, (id_usuario,)).fetchall()
+                if tuplas is not None:
+                    solicitacoes = [Solicitacao(*tupla) for tupla in tuplas]
+                    return solicitacoes
+                return None
+        except sqlite3.Error as ex:
+            print(ex)
+            return None

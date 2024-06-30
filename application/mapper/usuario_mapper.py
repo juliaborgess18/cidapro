@@ -1,5 +1,6 @@
 from application.dto.alterar_usuario_dto import AlterarUsuarioDTO 
 from application.dto.criar_usuario_dto import CriarUsuarioDTO
+from application.dto.visualizar_usuario_dto import VisualizarUsuarioDTO
 from application.utils.auth import obter_hash_senha
 from domain.entities.usuario import Usuario 
 from domain.models.funcao_usuario import *
@@ -29,4 +30,8 @@ class UsuarioMapper:
         usuario_alterado_db.email           = usuario.email  
         
         return usuario_alterado_db 
+    
+    @classmethod
+    def visualizar_usuario(cls, usuario: Usuario) -> VisualizarUsuarioDTO:
+        return VisualizarUsuarioDTO(id=str(usuario.id), nome=usuario.nome, cpf=usuario.cpf, data_nascimento=usuario.data_nascimento, email=usuario.email)
         
