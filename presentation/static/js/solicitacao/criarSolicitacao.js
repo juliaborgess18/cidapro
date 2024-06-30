@@ -30,8 +30,10 @@ async function criarSolicitacao(event) {
 
         const data = await response.json();
         console.log('Solicitação enviada com sucesso:', data);
+        alert('Solicitação enviada com sucesso!');
     } catch (error) {
         console.error('Erro ao enviar a solicitação:', error);
+        alert('Erro ao enviar a solicitação');
     }
 }
 

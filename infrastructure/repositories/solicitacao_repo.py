@@ -21,13 +21,25 @@ class SolicitacaoRepo:
     
 
     @classmethod
-    def selecionar_todos(cls) -> List[Solicitacao]:
+    def selecionar_todos(cls,) -> List[Solicitacao]:
         try:
             with obter_conexao() as conexao:
                 cursor = conexao.cursor()
                 tuplas = cursor.execute(SQL_SELECIONAR_TODOS).fetchall()
                 solicitacoes = [Solicitacao(*tupla) for tupla in tuplas]
             return solicitacoes
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+    
+    @classmethod
+    def selecionar_todos_por_usuario_logado(cls, id_usuario:str) -> List[tuple]:
+        tuplas = []
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tuplas = cursor.execute(SQL_SELECIONAR_TODOS_POR_USUARIO_LOGADO, (id_usuario,)).fetchall()
+            return tuplas
         except sqlite3.Error as ex:
             print(ex)
             return None

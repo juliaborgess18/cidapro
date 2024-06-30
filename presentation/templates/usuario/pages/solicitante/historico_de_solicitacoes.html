@@ -1,25 +1,33 @@
 {% extends "pages/base_interno.html" %}
+
 {% block subtitulo %}Histórico{% endblock %}
+
 {% block content %}
 <div class="container mt-3">
     <h1 class="display-5"><b>Histórico de Solicitações</b></h1>
     <hr>
-    <table class="table table-striped">
-        <thead>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Data/Hora Solicitação</th>
                 <th>Status</th>
                 <th>País</th>
+                <th>Motivo</th>
             </tr>
         </thead>
         <tbody>
-            <!-- {% for solicitacao in solicitacoes %}
-            
-            
-            {% endfor %} -->
+            {% for solicitacao in solicitacoes %}
+                <tr>
+                    <td>{{ solicitacao[0] }}</td>  
+                    <td>{{ solicitacao[6] }}</td>  
+                    <td>{{ solicitacao[2] }}</td>  
+                    <td>{{ solicitacao[7] }}</td>  
+                    <td>{{ solicitacao[8] }}</td>  
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
-
 {% endblock %}
+

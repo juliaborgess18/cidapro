@@ -17,6 +17,11 @@ async def get_solicitacoes():
     solicitacoes = SolicitacaoRepo.selecionar_todos()
     return {"Solicitações": solicitacoes }
 
+@router.get("/solicitacoes/{id_usuario}")
+async def get_solicitacao(id_usuario: str):
+    solicitacoes = SolicitacaoRepo.selecionar_todos_por_usuario_logado(id_usuario)
+    return {"Solicitação": solicitacoes }
+
 @router.get("/solicitacao/{id_solicitacao}")
 async def get_solicitacao(id_solicitacao: str):
     solicitacao = SolicitacaoRepo.selecionar_por_id(id_solicitacao)
