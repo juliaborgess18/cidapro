@@ -5,7 +5,7 @@ SQL_CRIAR_TABELA = """
         , status            TEXT NOT NULL
         , id_usuario        INTEGER NOT NULL
         , id_pais           INTEGER NOT NULL
-        , id_motivo            TEXT NOT NULL
+        , id_motivo         TEXT NOT NULL
         , FOREIGN KEY (id_usuario)    REFERENCES usuario(id)
         , FOREIGN KEY (id_pais)       REFERENCES pais(id)
         , FOREIGN KEY (id_motivo)     REFERENCES motivo(id)
@@ -17,6 +17,31 @@ SQL_SELECIONAR_TODOS = """
         * 
     FROM 
         solicitacao
+"""
+
+# SQL_SELECIONAR_TODOS_POR_USUARIO_LOGADO = """
+#     SELECT 
+#         * 
+#     FROM 
+#         solicitacao
+#     WHERE 
+#         id_usuario = ?
+# """
+
+SQL_SELECIONAR_TODOS_POR_USUARIO_LOGADO = """
+    SELECT 
+        solicitacao.*, 
+        strftime('%Y-%m-%d %H:%M:%S', dh_solicitacao) ,
+        p.nome AS nome_pais, 
+        m.nome AS nome_motivo
+    FROM 
+        solicitacao
+    INNER JOIN 
+        pais p ON p.id = solicitacao.id_pais
+    INNER JOIN 
+        motivo m ON m.id = solicitacao.id_motivo
+    WHERE 
+        solicitacao.id_usuario = ?;
 """
 
 SQL_SELECIONAR_POR_ID = """
