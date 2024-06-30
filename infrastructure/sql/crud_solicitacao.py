@@ -5,8 +5,10 @@ SQL_CRIAR_TABELA = """
         , status            TEXT NOT NULL
         , id_usuario        INTEGER NOT NULL
         , id_pais           INTEGER NOT NULL
+        , id_motivo            TEXT NOT NULL
         , FOREIGN KEY (id_usuario)    REFERENCES usuario(id)
         , FOREIGN KEY (id_pais)       REFERENCES pais(id)
+        , FOREIGN KEY (id_motivo)     REFERENCES motivo(id)
     )
 """
 
@@ -37,8 +39,8 @@ SQL_SELECIONAR_POR_ID_E_USUARIO_LOGADO = """
 """
 
 SQL_INSERIR = """
-    INSERT INTO solicitacao(dh_solicitacao, status, id_usuario, id_pais) 
-    VALUES (?, ?, ?, ?)
+    INSERT INTO solicitacao(dh_solicitacao, status, id_usuario, id_pais, id_motivo) 
+    VALUES (?, ?, ?, ?, ?)
 """
 
 SQL_ALTERAR_STATUS = """

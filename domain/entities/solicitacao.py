@@ -9,4 +9,6 @@ class Solicitacao():
     status          : Optional[str] = None
     id_usuario      : Optional[str] = None
     id_pais         : Optional[str] = None
+    id_motivo       : Optional[str] = None
+    
     

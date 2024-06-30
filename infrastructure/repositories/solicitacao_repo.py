@@ -80,10 +80,11 @@ class SolicitacaoRepo:
                 cursor.execute(
                     SQL_INSERIR,
                     (
-                        solicitacao.dh_solicitacao
+                         solicitacao.dh_solicitacao
                         ,solicitacao.status
                         ,solicitacao.id_usuario
-                        ,solicitacao.id_pais         
+                        ,solicitacao.id_pais    
+                        ,solicitacao.id_motivo     
                     ),
                 )
             if cursor.rowcount > 0:
@@ -159,6 +160,7 @@ class SolicitacaoRepo:
                 solicitacao.status = dado['status']
                 solicitacao.id_usuario = dado['id_usuario']
                 solicitacao.id_pais = dado['id_pais']
+                solicitacao.id_motivo = dado['id_motivo']
                 solicitacoes.append(solicitacao)
             
             for solicitacao in solicitacoes:
@@ -172,6 +174,7 @@ class SolicitacaoRepo:
                                 ,solicitacao.status
                                 ,solicitacao.id_usuario
                                 ,solicitacao.id_pais
+                                ,solicitacao.id_motivo
                             ) 
                         ) 
                 except sqlite3.Error as ex:

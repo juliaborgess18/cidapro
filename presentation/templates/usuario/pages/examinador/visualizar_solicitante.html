@@ -54,7 +54,7 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Data e Hora</th>
+                        <th scope="col">Data/Hora</th>
                         <th scope="col">Pais</th>
                         <th scope="col">Motivo</th>
                         <th scope="col">Status</th>
@@ -68,7 +68,7 @@
                         <th scope="row">{{ solicitacao.id }}</th>
                         <td scope="col">{{ solicitacao.dh_solicitacao }}</td>
                         <td scope="col">{{ solicitacao.status }}</td>
-                        <td scope="col"> - </td>
+                        <td scope="col">{{ solicitacao.motivo }}</td>
                         <td scope="col">{{ solicitacao.pais }}</td>
                     </tr>
                     {% endfor %}
@@ -80,5 +80,4 @@
     </div>
 
 </div>
-
 {% endblock %}

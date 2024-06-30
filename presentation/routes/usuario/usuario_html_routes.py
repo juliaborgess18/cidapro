@@ -5,6 +5,7 @@ from application.mapper.solicitacao_mapper import SolicitacaoMapper
 from application.mapper.usuario_mapper import UsuarioMapper
 from application.use_cases.usuario.consultar_resultado_solicitante_use_case import ConsultarResultadoSolicitanteUseCase
 from application.use_cases.usuario.visualizar_historico_solicitante import VisualizarHistoricoSolicitacoesUseCase
+from infrastructure.repositories.motivo_repo import MotivoRepo
 from domain.errors.NotFoundException import NotFoundException
 from infrastructure.repositories.pais_repo import PaisRepo
 from infrastructure.repositories.solicitacao_repo import SolicitacaoRepo
@@ -21,8 +22,9 @@ async def get_pagina_inicial_solicitante(request: Request):
 
 @router.get("/usuario/solicitante/nova_solicitacao", response_class=HTMLResponse)
 async def get_pagina_inicial_solicitante(request: Request):
-    paises = PaisRepo.obter_paises()
-    return templates.TemplateResponse("solicitante/nova_solicitacao.html", {"request": request, "paises":paises})
+    paises  = PaisRepo.obter_paises()
+    motivos = MotivoRepo.obter_motivos()
+    return templates.TemplateResponse("solicitante/nova_solicitacao.html", {"request": request, "paises":paises, "motivos":motivos})
 
 @router.get("/usuario/solicitante/consultar_solicitacao", response_class=HTMLResponse)
 async def get_pagina_inicial_solicitante(request: Request, id_solicitacao: str="", id_usuario: str = ""):

@@ -1,6 +1,5 @@
 from fastapi import Depends, FastAPI
 from fastapi.staticfiles import StaticFiles
-import uvicorn
 from application.utils.auth import checar_permissao, middleware_autenticacao
 from infrastructure.util.data_seeder import criar_bancos_e_inserir_dados
 from presentation.middlewares.exception_handler import configurar_excecoes
@@ -21,6 +20,3 @@ app.include_router(usuario_html_routes.router)
 app.include_router(main_api_routes.router)
 app.include_router(usuario_api_routes.router)
 app.include_router(solicitacao_crud_routes.router)
-
-if __name__ == "__main__":
-    uvicorn.run(app="main:app", port=8000, reload=True)

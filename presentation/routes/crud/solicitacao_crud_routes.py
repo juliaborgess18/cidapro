@@ -43,6 +43,7 @@ async def post_solicitacao(solicitacao: CriarSolicitacaoDTO):
 
     nova_solicitacao = SolicitacaoMapper.cadastrar_solicitacao(solicitacao)
     nova_solicitacao_repo = SolicitacaoRepo.inserir(nova_solicitacao)
+    
     return {"Solicitação criada": nova_solicitacao_repo.id }
 
 @router.patch("/solicitacao", response_class=JSONResponse)
