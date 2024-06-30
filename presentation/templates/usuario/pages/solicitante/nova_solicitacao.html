@@ -4,28 +4,37 @@
 <div class="container mt-3">
     <h1 class="display-5"><b>Nova Solicitação</b></h1>
     <hr>
-    <form action="#" class="row json-form" method="post">
+    <form id=solicitacaoForm onsubmit="criarSolicitacao(event)" class="row json-form">
         <div class="col-12 col-lg-6">
+            <input type="hidden" id="idUsuario" value="{{ usuario.id }}">
             <div class="form-floating mb-3">
                 <select class="form-select" id="pais" name="pais">
                     <option value="" selected disabled>Selecione um país</option>
-                    {% for codigo, nome in paises %}
-                    <option value="{{ pais }}">{{ nome }}</option>
+                    {% for id_pais, nome in paises %}
+                        <option value="{{ id_pais }}">{{ nome }}</option>
                     {% endfor %}
-                    <input type="hidden" name="pais_selecionado" value="{{ codigo }}">
                 </select>
+                <input type="hidden" name="pais_selecionado" id="idPais" value="">
                 <label for="pais">País</label>
             </div>
+            
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="cpf" name="cpf" data-mask="cpf" placeholder=" ">
-                <label for="cpf">Motivo</label>
+                <select class="form-select" id="motivo" name="motivos">
+                    <option value="" selected disabled>Selecione um motivo</option>
+                    {% for id_motivo, nome in motivos %}
+                    <option value="{{ id_motivo }}">{{ nome }}</option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="motivo_selecionado" id="idMotivo" value="">
+                <label for="motivos">Motivo</label>
             </div>
 
             <div class="mb-3 d-flex">
                 <button class="btn btn-dark btn-lg w-50" type="submit">Solicitar</button>
             </div>
+
         </div>
     </form>
 </div>
-
+<script src="/presentation/static/js/solicitacao/novaSolicitacao.js"></script>
 {% endblock %}

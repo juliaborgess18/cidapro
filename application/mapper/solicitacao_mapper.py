@@ -12,4 +12,5 @@ class SolicitacaoMapper:
         nova_solicitacao_db.status = solicitacao.status
         nova_solicitacao_db.id_usuario = solicitacao.id_usuario
         nova_solicitacao_db.id_pais = solicitacao.id_pais
+        nova_solicitacao_db.id_motivo = solicitacao.id_motivo
         return nova_solicitacao_db   

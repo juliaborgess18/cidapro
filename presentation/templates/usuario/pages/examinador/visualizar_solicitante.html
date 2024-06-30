@@ -2,8 +2,18 @@
 {% block subtitulo %}Visualizar Solicitação{% endblock %}
 {% block content %}
 <div class="container mt-3">
-    <h1 class="display-5"><b>Visualizar Solicitação</b></h1>
+    <h1 class="display-5"><b>Visualizar Solicitante</b></h1>
     <hr>
+    <form action="" class="row json-form">
+        <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="cpf" name="cpf" data-mask="cpf" placeholder=" ">
+                <label for="cpf">Solicitante</label>
+            </div>
+            <div class="mb-3 d-flex">
+                <button class="btn btn-dark btn-lg w-25" type="submit">Filtrar</button>
+            </div>
+        </div>
+    </form>
 </div>
-
 {% endblock %}

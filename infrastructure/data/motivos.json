@@ -1,0 +1,19 @@
+{
+    "motivos": [
+        {
+            "nome": "PASSEIO"
+        },
+        {
+            "nome": "TRABALHO"
+        },
+        {
+            "nome": "TRATAMENTO DE SAÚDE"
+        },
+        {
+            "nome": "INTERCÂMBIO ESTUDANTIL"
+        },
+        {
+            "nome": "PERMANENTE"
+        }
+    ]
+}

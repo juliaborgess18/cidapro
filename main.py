@@ -22,5 +22,3 @@ app.include_router(main_api_routes.router)
 app.include_router(usuario_api_routes.router)
 app.include_router(solicitacao_crud_routes.router)
 
-if __name__ == "__main__":
-    uvicorn.run(app="main:app", port=8000, reload=True)

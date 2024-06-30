@@ -5,3 +5,5 @@ class CriarSolicitacaoDTO(BaseModel):
     status      : str          
     id_usuario  : str 
     id_pais     : str 
+    id_motivo   : str
+    
