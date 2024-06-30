@@ -1,5 +1,6 @@
 from application.mapper.solicitacao_mapper import SolicitacaoMapper
 from application.mapper.usuario_mapper import UsuarioMapper
+from domain.errors.NotFoundException import NotFoundException
 from infrastructure.repositories.solicitacao_repo import SolicitacaoRepo
 from infrastructure.repositories.usuario_repo import UsuarioRepo
 
@@ -13,6 +14,10 @@ class AnalisarSolicitanteUseCase:
 
         if(id != 0):
             solicitacao = SolicitacaoRepo.selecionar_por_id(id) if id != 0 else None
+
+            if solicitacao == None:
+                raise NotFoundException("Solicitação não encontrada.")
+
             solicitante = UsuarioRepo.selecionar_por_id(solicitacao.id_usuario)
 
             solicitacao_mapeada = SolicitacaoMapper.visualizar_solicitacao(solicitacao)

@@ -43,7 +43,7 @@ def configurar_excecoes(app: FastAPI):
         return response
     
     @app.exception_handler(NotFoundException)
-    async def resource_not_found_exception_handler(request: Request, _):  
+    async def resource_not_found_exception_handler(request: Request, ex: NotFoundException):  
         if request.state.usuario.funcao == str(EXAMINADOR):
             response = RedirectResponse(
                 f"{request.url.path}", status_code=status.HTTP_302_FOUND
@@ -54,7 +54,7 @@ def configurar_excecoes(app: FastAPI):
             )
         adicionar_mensagem_erro(
             response,
-            f"Usuário não encontrado.",
+            ex.message,
         )
         return response
 
