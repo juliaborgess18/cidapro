@@ -116,7 +116,7 @@ class UsuarioRepo:
             print(ex)
 
     @classmethod
-    def selecionar_por_email(cls, email:str) -> Usuario:
+    def selecionar_por_email(cls, email:str) -> Optional[Usuario]:
         try:
             with obter_conexao() as conexao:
                 cursor = conexao.cursor()
@@ -126,8 +126,10 @@ class UsuarioRepo:
                         email,
                     )
                 ).fetchone()
-                usuario = Usuario(*tupla)
-            return usuario
+                if(tupla != None):
+                    usuario = Usuario(*tupla)
+                    return usuario
+                return None
         except sqlite3.Error as ex:
             print(ex)
             return None

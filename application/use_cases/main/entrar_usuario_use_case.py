@@ -1,4 +1,3 @@
-from typing import Optional
 from application.dto.entrar_usuario_dto import EntrarUsuarioDTO
 from application.utils.auth import conferir_senha
 from domain.entities.usuario import Usuario
@@ -19,7 +18,9 @@ from application.utils.auth import (
 
 
 class EntrarUsuarioUseCase():
-    async def execute(dto: EntrarUsuarioDTO) -> Optional[JSONResponse]:
+
+    @classmethod
+    async def execute(cls, dto: EntrarUsuarioDTO) -> JSONResponse:
         usuario_entrou = UsuarioRepo.selecionar_por_email(dto.email)
         if (
             (not usuario_entrou)
@@ -40,7 +41,7 @@ class EntrarUsuarioUseCase():
                 "Não foi possível alterar o token do cliente no banco de dados."
             )
         
-        response = EntrarUsuarioUseCase.VerificarFuncao(usuario_entrou)
+        response = cls.VerificarFuncao(usuario_entrou)
 
         adicionar_cookie_auth(response, token)
         return response

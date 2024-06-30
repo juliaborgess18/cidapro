@@ -1,4 +1,3 @@
-
 from typing import List
 from domain.entities.solicitacao import Solicitacao
 from infrastructure.repositories.solicitacao_repo import SolicitacaoRepo

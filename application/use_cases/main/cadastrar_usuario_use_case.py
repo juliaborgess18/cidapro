@@ -7,7 +7,9 @@ from infrastructure.repositories.usuario_repo import UsuarioRepo
 from infrastructure.repositories.usuario_repo import UsuarioRepo
 
 class CadastrarUsuarioUseCase():
-    async def execute(dto: CriarUsuarioDTO) -> Optional[Usuario]:
+
+    @classmethod
+    async def execute(cls, dto: CriarUsuarioDTO) -> Optional[Usuario]:
         novo_usuario = UsuarioMapper.cadastrar_usuario(dto)
         usuario_inserido = UsuarioRepo.inserir(novo_usuario)
         return usuario_inserido

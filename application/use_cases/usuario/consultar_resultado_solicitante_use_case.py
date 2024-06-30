@@ -1,4 +1,3 @@
-
 from typing import Optional
 
 from domain.entities.solicitacao import Solicitacao
