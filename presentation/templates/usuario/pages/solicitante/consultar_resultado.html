@@ -4,19 +4,20 @@
 <div class="container mt-3">
     <h1 class="display-5"><b>Consultar Resultado</b></h1>
     <hr>
-    <form class="row json-form" id="consultaForm" onsubmit="consultar(event)">
-        <input type="hidden" id="idUsuario" value="{{ usuario.id }}">
+    <form class="row" action="/usuario/solicitante/consultar_solicitacao" method="get" role="search">
+
+        <input type="hidden" name="id_usuario" value="{{ usuario.id }}">
         <div class="col-12 col-lg-6">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="idSolicitacao" name="idSolicitacao" placeholder=" ">
+                <input type="text" class="form-control" id="idSolicitacao" name="id_solicitacao" placeholder=" ">
                 <label for="idSolicitacao">Código de solicitação</label>
             </div>
             <div class="mb-3 d-flex">
-                <button class="btn btn-dark btn-lg w-50" type="submit" id="btnConsultar">Consultar</button>
+                <button class="btn btn-dark btn-lg w-50" type="submit">Consultar</button>
             </div>
         </div>
     </form>
-    <label>Resultado: </label>
+    <p>Resultado: {{ solicitacao.status }} </p>
     <div id="resultadoConsulta"></div>
 </div>
 <script src="/presentation/static/js/solicitacao/consultarResultado.js"></script>
