@@ -1,3 +1,4 @@
+import datetime
 from typing import List
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
@@ -27,9 +28,9 @@ async def get_pagina_inicial_solicitante(request: Request, id_solicitacao: str="
     solicitacao = ConsultarResultadoSolicitanteUseCase.execute(id_solicitacao, id_usuario)
     return templates.TemplateResponse("solicitante/consultar_resultado.html", {"request": request, "solicitacao": solicitacao})
 
-@router.get("/usuario/solicitante/histórico_solicitacao", response_class=HTMLResponse)
-async def get_pagina_inicial_solicitante(request: Request):
-    solicitacoes = VisualizarHistoricoSolicitacoesUseCase.execute()
+@router.get("/usuario/solicitante/historico_solicitacao/{id_usuario}", response_class=HTMLResponse)
+async def get_pagina_inicial_solicitante(request: Request, id_usuario: str):
+    solicitacoes = SolicitacaoRepo.selecionar_todos_por_usuario_logado(id_usuario)
     return templates.TemplateResponse("solicitante/historico_de_solicitacoes.html", {"request": request, "solicitacoes": solicitacoes})
 
 @router.get("/usuario/examinador/pagina_inicial", response_class=HTMLResponse)

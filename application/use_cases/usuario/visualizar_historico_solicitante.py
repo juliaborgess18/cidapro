@@ -8,5 +8,5 @@ class VisualizarHistoricoSolicitacoesUseCase:
     
     @classmethod
     async def execute() -> List[Solicitacao]:
-        solicitacoes = SolicitacaoRepo.selecionar_todos()
+        solicitacoes = SolicitacaoRepo.selecionar_todos_por_usuario_logado()
         return solicitacoes
