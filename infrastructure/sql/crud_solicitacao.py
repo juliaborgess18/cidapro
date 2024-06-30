@@ -52,6 +52,14 @@ SQL_SELECIONAR_POR_ID = """
     WHERE 
         id = ?
 """
+SQL_SELECIONAR_POR_ID_USUARIO = """
+    SELECT 
+        * 
+    FROM 
+      solicitacao
+    WHERE 
+        id_usuario = ?
+"""
 
 SQL_SELECIONAR_POR_ID_E_USUARIO_LOGADO = """
     SELECT 

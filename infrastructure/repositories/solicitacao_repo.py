@@ -198,7 +198,7 @@ class SolicitacaoRepo:
         try:
             with obter_conexao() as conexao:
                 cursor = conexao.cursor()
-                tuplas = cursor.execute(SQL_SELECIONAR_POR_ID, (id_usuario,)).fetchall()
+                tuplas = cursor.execute(SQL_SELECIONAR_POR_ID_USUARIO, (id_usuario,)).fetchall()
                 if tuplas is not None:
                     solicitacoes = [Solicitacao(*tupla) for tupla in tuplas]
                     return solicitacoes
