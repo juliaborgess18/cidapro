@@ -25,7 +25,7 @@ SQL_SELECIONAR_POR_ID = """
     FROM 
       solicitacao
     WHERE 
-        id_usuario = ?
+        id = ?
 """
 
 SQL_SELECIONAR_POR_ID_E_USUARIO_LOGADO = """
@@ -63,4 +63,21 @@ SQL_SE_EXISTE = """
 
 SQL_SELECIONAR_QUANTIDADE = """
     SELECT COUNT(*) FROM solicitacao
+"""
+
+SQL_SELECIONAR_POR_ID_VISUALIZACAO = """
+    SELECT 
+        s.id,
+        s.dh_solicitacao,
+        s.status,
+        p.nome AS pais,
+        m.nome AS motivo 
+    FROM 
+      solicitacao s
+    INNER JOIN 
+        pais p ON p.id = s.id_pais
+    INNER JOIN 
+        motivo m ON m.id = s.id_motivo
+    WHERE 
+        s.id = ?
 """

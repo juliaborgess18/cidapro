@@ -2,6 +2,7 @@ import json
 import sqlite3
 from typing import List, Optional
 
+from application.dto.visualizar_solicitacao_dto import VisualizarSolicitacaoDTO
 from domain.entities.solicitacao import Solicitacao
 from infrastructure.sql.crud_solicitacao import *
 from infrastructure.util.database import obter_conexao
@@ -190,6 +191,33 @@ class SolicitacaoRepo:
                     solicitacoes = [Solicitacao(*tupla) for tupla in tuplas]
                     return solicitacoes
                 return None
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+        
+    @classmethod
+    def selecionar_por_id_visualizacao(cls, id: str) -> Optional[VisualizarSolicitacaoDTO]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(
+                    SQL_SELECIONAR_POR_ID_VISUALIZACAO,
+                    (
+                        id,
+                    )
+                ).fetchone()
+                if tupla is not None:
+                    solicitacao = VisualizarSolicitacaoDTO(
+                        id = str(tupla[0]),
+                        dh_solicitacao = str(tupla[1]),
+                        status = str(tupla[2]),
+                        motivo = str(tupla[3]),
+                        pais = str(tupla[4])
+                    )
+                    print(solicitacao.id)
+                    return solicitacao
+                else:
+                    return None
         except sqlite3.Error as ex:
             print(ex)
             return None

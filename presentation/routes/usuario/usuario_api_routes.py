@@ -4,6 +4,8 @@ from application.dto.criar_usuario_dto import CriarUsuarioDTO
 from application.mapper.usuario_mapper import UsuarioMapper
 from application.utils.cookies import adicionar_mensagem_sucesso, excluir_cookie_auth
 from domain.entities.usuario import Usuario
+from domain.models.status_solicitacao import SOLICITACAO_ACEITA, SOLICITACAO_CANCELADA, SOLICITACAO_NEGADA
+from infrastructure.repositories.solicitacao_repo import SolicitacaoRepo
 from infrastructure.repositories.usuario_repo import UsuarioRepo
 from presentation.util.templates import obter_jinja_templates
 
@@ -19,3 +21,18 @@ async def get_sair(request: Request):
     excluir_cookie_auth(response)
     adicionar_mensagem_sucesso(response, "Saída realizada com sucesso!")
     return response
+
+@router.patch("/usuario/aceitar_solicitacao", response_class=JSONResponse)
+async def patch_status_aceitar_solicitacao(request: Request, id_solicitacao: int):
+    SolicitacaoRepo.alterar_status(id_solicitacao, SOLICITACAO_ACEITA)
+    return JSONResponse(status_code=status.HTTP_200_OK, content={"status": "sucesso", "mensagem": "Solicitação aceita com sucesso"})
+
+@router.patch("/usuario/negar_solicitacao", response_class=JSONResponse)
+async def patch_status_negar_solicitacao(request: Request, id_solicitacao: int):
+    SolicitacaoRepo.alterar_status(id_solicitacao, SOLICITACAO_NEGADA)
+    return JSONResponse(status_code=status.HTTP_200_OK, content={"status": "sucesso", "mensagem": "Solicitação negada com sucesso"})
+
+@router.patch("/usuario/cancelar_solicitacao", response_class=JSONResponse)
+async def patch_status_cancelar_solicitacao(request: Request, id_solicitacao: int):
+    SolicitacaoRepo.alterar_status(id_solicitacao, SOLICITACAO_CANCELADA)
+    return JSONResponse(status_code=status.HTTP_200_OK, content={"status": "sucesso", "mensagem": "Solicitação cancelada com sucesso"})

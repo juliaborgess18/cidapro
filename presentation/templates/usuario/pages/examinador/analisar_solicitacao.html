@@ -1,27 +1,90 @@
 {% extends "pages/base_interno.html" %}
 {% block subtitulo %}Analisar Solicitação{% endblock %}
 {% block content %}
+
+
 <div class="container mt-3">
     <h1 class="display-5"><b>Analisar Solicitação</b></h1>
     <hr>
-</div>
+    <form action="/usuario/examinador/analisar_solicitacao" method="get" role="search">
+        <div class="d-inline-flex align-items-baseline">
+            <div class="form-floating mb-3 me-3">
+                <input class="form-control" type="number" id="inputIdSolicitacao" name="id_solicitacao" placeholder=" ">
+                <label class="form-label" for="inputIdSolicitacao">Id da Solicitação</label>
+            </div>
+    
+            <div class="mb-3 ms-3">
+                <button class="btn btn-dark btn-lg" type="submit">Buscar</button>
+            </div>
 
-<div class="container mt-3">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Data/Hora Solicitação</th>
-                <th>Status</th>
-                <th>País</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- {% for solicitacao in solicitacoes %}
-            
-            
-            {% endfor %} -->
-        </tbody>
-    </table>
+        </div>
+    </form>
+    <hr>
+    <h2 class="display-6 mt-3">Dados do Solicitante</h2>
+    <div class="row row-cols-5 mt-3">
+        <div class="col">
+            <p class="lead fw-bold">Id do solicitante</p>
+            <p>{{ solicitante.id if solicitante != None else '' }}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Nome do Solicitante</p>
+            <p>{{ solicitante.nome if solicitante != None else ''}}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">CPF</p>
+            <p>{{ solicitante.cpf if solicitante != None else ''}}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Data de Nascimento</p>
+            <p>{{ solicitante.data_nascimento if solicitante != None else ''}}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Email</p>
+            <p>{{ solicitante.email if solicitante != None else ''}}</p>
+        </div>
+
+    </div>
+    <hr>
+    <h2 class="display-6 mt-3">Dados da Solicitação</h2>
+    <div class="row row-cols-5 mt-3">
+        <div class="col">
+            <p class="lead fw-bold">Id</p>
+            <p>{{ solicitacao.id if solicitacao != None else '' }}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Data/Hora</p>
+            <p>{{ solicitacao.dh_solicitacao if solicitacao != None else '' }}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Status</p>
+            <p>{{ solicitacao.status if solicitacao != None else '' }}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Pais</p>
+            <p>{{ solicitacao.pais if solicitacao != None else '' }}</p>
+        </div>
+
+        <div class="col">
+            <p class="lead fw-bold">Motivo</p>
+            <p>{{ solicitacao.motivo if solicitacao != None else '' }}</p>
+        </div>
+
+    </div>
+
+    <div>
+        <button class="btn btn-dark btn-lg" onclick="ClickBtnAceitar('{{ solicitacao.id}}')">Aceitar</button>
+        <button class="btn btn-dark btn-lg" onclick="ClickBtnNegar('{{ solicitacao.id}}')">Negar</button>
+        <button class="btn btn-dark btn-lg" onclick="ClickBtnCancelar('{{ solicitacao.id}}')">Cancelar</button>
+    </div>
+    
+    
 </div>
+<script src="/presentation/static/js/solicitacao/updateSolicitacao.js"></script>
 {% endblock %}
