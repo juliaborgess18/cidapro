@@ -62,6 +62,12 @@ Este projeto pode ser acessado [clicando aqui](https://cidapro.cachoeiro.es/).
 
 
 ## 👨‍💻 Autores
-* [Igor Almeida da Silva](https://www.linkedin.com/in/igoralmeidadasilva/)
+### Igor Almeida da Silva
+[![Linkedin](https://img.shields.io/badge/-Linkedin-blue?style=for-the-badge&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/igoralmeidadasilva/)](https://www.linkedin.com/in/igoralmeidadasilva/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/igoralmeidadasilva)
 
-* [Júlia Borges Santos](https://www.linkedin.com/in/julia-borgess/)
+
+
+### Júlia Borges Santos
+[![Linkedin](https://img.shields.io/badge/-Linkedin-blue?style=for-the-badge&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/igoralmeidadasilva/)](https://www.linkedin.com/in/julia-borgess/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/juliaborgess18)
