@@ -1,19 +1,25 @@
 {
     "motivos": [
         {
-            "nome": "PASSEIO"
+            "nome": "RESIDENCIA PROLONGADA"
         },
         {
             "nome": "TRABALHO"
         },
         {
-            "nome": "TRATAMENTO DE SAÚDE"
+            "nome": "DESCENDENCIA"
         },
         {
-            "nome": "INTERCÂMBIO ESTUDANTIL"
+            "nome": "ASILO POLITICO"
         },
         {
-            "nome": "PERMANENTE"
+            "nome": "SEGURANCA E PROTENCAO"
+        },
+        {
+            "nome": "UNIAO CIVIL"
+        },
+        {
+            "nome": "OUTROS"
         }
     ]
 }
